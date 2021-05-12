@@ -1,0 +1,28 @@
+---
+- debug:
+    msg: "oah-install of oah.desktop"
+
+- name: kob-shell fetch
+  become: yes
+  vars:
+    clone_path: ./kobman_install.sh
+  get_url:
+    url: https://raw.githubusercontent.com/hyperledgerkochi/KOBman/dist/dist/get.kobman.io
+    dest: "{{ clone_path }}"
+
+- name: Executing kob environment
+  become: yes
+  command: "{{ item }}"
+  with_items:
+       - chmod 755 ./kobman_install.sh
+
+- name: Triggering the environment
+  command:  ./kobman_install.sh
+       #- rm -rf kobman_install.sh
+
+- name: Updating permission 
+  shell: chmod 755 /home/vagrant/.kobman/bin/kobman-init.sh
+
+- name: Source Be-Secure environment 
+  sudo: no 
+  shell: . ~/.bashrc  && /home/vagrant/.kobman/bin/kobman-init.sh

@@ -1,0 +1,6 @@
+---
+- debug:
+    msg: "oah-reset of kob.shell"
+#remove kob-shell
+
+#install kob-shell

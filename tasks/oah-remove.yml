@@ -1,0 +1,4 @@
+---
+- debug:
+    msg: "oah-remove of kob.shell"
+#remove kob-shell
