@@ -1,6 +1,6 @@
 ---
 - debug:
-    msg: "oah-install of oah.desktop"
+    msg: "oah-install of oah.kobman"
 
 - name: kob-shell fetch
   become: yes
