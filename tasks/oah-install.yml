@@ -5,7 +5,7 @@
 - name: Fetching io file for KOBman
   become: yes
   vars:
-    clone_path: ./kobman_install.sh
+    clone_path: /home/vagrant/kobman_install.sh
   get_url:
     url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
     dest: "{{ clone_path }}"
@@ -14,11 +14,11 @@
   become: yes
   command: "{{ item }}"
   with_items:
-       - chmod 775 ./kobman_install.sh
+       - chmod 775 /home/vagrant/kobman_install.sh
 
 - name: Installing KOBman
   # command: ./kobman_install.sh
-  shell: source ./kobman_install.sh
+  shell: source /home/vagrant/kobman_install.sh
        #- rm -rf kobman_install.sh
 
 - name: Updating permission 
