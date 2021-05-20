@@ -22,7 +22,7 @@
 #        #- rm -rf kobman_install.sh
 
 - name: Installing KOBman
-  ansible.builtin.script: /home/vagrant/kobman_install.sh
+  ansible.builtin.shell: source /home/vagrant/kobman_install.sh
   args:
     executable: /bin/bash
 
