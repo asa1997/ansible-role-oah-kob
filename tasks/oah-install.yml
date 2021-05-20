@@ -14,11 +14,11 @@
   become: yes
   command: "{{ item }}"
   with_items:
-       - chmod 777 ./kobman_install.sh
+       - chmod 775 ./kobman_install.sh
 
 - name: Triggering the environment
-  command: ./kobman_install.sh
-  executable: /bin/bash
+  # command: ./kobman_install.sh
+  shell: sh ./kobman_install.sh
        #- rm -rf kobman_install.sh
 
 - name: Updating permission 
