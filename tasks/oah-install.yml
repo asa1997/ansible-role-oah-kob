@@ -18,7 +18,7 @@
 
 - name: Triggering the environment
   # command: ./kobman_install.sh
-  shell: ./kobman_install.sh
+  shell: source ./kobman_install.sh
        #- rm -rf kobman_install.sh
 
 - name: Updating permission 
