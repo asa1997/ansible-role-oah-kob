@@ -10,8 +10,8 @@
     url: https://raw.githubusercontent.com/hyperledgerkochi/KOBman/dist/dist/get.kobman.io
     dest: "{{ clone_path }}"
 
-- name: Executing kob environment
-  become: yes
+# - name: Executing kob environment
+#   become: yes
   # command: "{{ item }}"
   # with_items:
   #      - chmod 755 ./kobman_install.sh
