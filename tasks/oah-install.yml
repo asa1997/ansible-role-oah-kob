@@ -16,15 +16,15 @@
   with_items:
        - chmod 775 /home/vagrant/kobman_install.sh
 
-# - name: Installing KOBman
-#   # command: ./kobman_install.sh
-#   shell: source /home/vagrant/kobman_install.sh
-#        #- rm -rf kobman_install.sh
-
 - name: Installing KOBman
-  ansible.builtin.shell: source /home/vagrant/kobman_install.sh
-  args:
-    executable: /bin/bash
+  # command: ./kobman_install.sh
+  shell:  ./home/vagrant/kobman_install.sh
+       #- rm -rf kobman_install.sh
+
+# - name: Installing KOBman
+#   ansible.builtin.shell: source /home/vagrant/kobman_install.sh
+#   args:
+#     executable: /bin/bash
 
 
 - name: Updating permission 
