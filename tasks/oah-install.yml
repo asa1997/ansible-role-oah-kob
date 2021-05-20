@@ -2,7 +2,7 @@
 - debug:
     msg: "oah-install of oah.kobman"
 
-- name: kob-shell fetch
+- name: Fetching io file for KOBman
   become: yes
   vars:
     clone_path: ./kobman_install.sh
@@ -10,13 +10,13 @@
     url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
     dest: "{{ clone_path }}"
 
-- name: Executing kob environment
+- name: Setting up permission
   become: yes
   command: "{{ item }}"
   with_items:
        - chmod 775 ./kobman_install.sh
 
-- name: Triggering the environment
+- name: Installing KOBman
   # command: ./kobman_install.sh
   shell: source ./kobman_install.sh
        #- rm -rf kobman_install.sh
