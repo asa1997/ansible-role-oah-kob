@@ -12,12 +12,12 @@
 
 - name: Executing kob environment
   become: yes
-  command: "{{ item }}"
-  with_items:
-       - chmod 755 ./kobman_install.sh
+  # command: "{{ item }}"
+  # with_items:
+  #      - chmod 755 ./kobman_install.sh
 
 - name: Triggering the environment
-  command: sh ./kobman_install.sh
+  command: ./kobman_install.sh
        #- rm -rf kobman_install.sh
 
 - name: Updating permission 
