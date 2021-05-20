@@ -18,7 +18,7 @@
 
 - name: Installing KOBman
   # command: ./kobman_install.sh
-  shell:  ./home/vagrant/kobman_install.sh
+  shell: ./home/vagrant/kobman_install.sh
        #- rm -rf kobman_install.sh
 
 # - name: Installing KOBman
