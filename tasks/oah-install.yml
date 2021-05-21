@@ -1,9 +1,16 @@
 ---
 - debug:
     msg: "oah-install of oah.kobman"
-    
-- name: debug through ansible.env
+
+- name: debug specified user's home dir through ansible.env
   debug: var=ansible_env.HOME
+  become: true
+  become_user: "{{ user }}"
+
+- name: debug specified user's home dir through lookup on env
+  debug: var=lookup('env','HOME')
+  become: true
+  become_user: "{{ user }}"
 
 - name: Fetching io file for KOBman
   become: yes
