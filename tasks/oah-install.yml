@@ -9,8 +9,8 @@
 
 - name: debug specified user's home dir through lookup on env
   debug: var=lookup('env','HOME')
-  become: true
-  become_user: "{{ user }}"
+  # become: true
+  # become_user: "{{ user }}"
 
 - name: Fetching io file for KOBman
   become: yes
