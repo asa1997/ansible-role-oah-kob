@@ -1,6 +1,9 @@
 ---
 - debug:
     msg: "oah-install of oah.kobman"
+    
+- name: debug through ansible.env
+  debug: var=ansible_env.HOME
 
 - name: Fetching io file for KOBman
   become: yes
