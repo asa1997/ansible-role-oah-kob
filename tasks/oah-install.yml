@@ -1,45 +1,115 @@
 ---
-- debug:
-    msg: "oah-install of oah.kobman"
-
-# - name: debug specified user's home dir through ansible.env
-#   debug: var=ansible_env.HOME
-#   become: true
-#   become_user: "{{ user }}"
-
-- name: debug specified user's home dir through lookup on env
-  debug: var=lookup('env','HOME')
-  # become: true
-  # become_user: "{{ user }}"
-
-- name: Fetching io file for KOBman
-  become: yes
+- name: Setting up KOBman
+  hosts: all
   vars:
-    clone_path: /home/vagrant/kobman_install.sh
-  get_url:
-    url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
-    dest: "{{ clone_path }}"
+    - path_to_home: "{{ lookup('env','HOME') }}"
+    - clone_path: "{{ path_to_home }}/kobman_install.sh" 
+  tasks:
+    - name: Fetching io file for KOBman
+      get_url:
+        url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
+        dest: "{{ clone_path }}"
+      
+    - name: Setting up permission
+      command: "{{ item }}"
+      with_items:
+          - chmod 775 "{{ clone_path }}"
 
-- name: Setting up permission
-  become: yes
-  command: "{{ item }}"
-  with_items:
-       - chmod 775 /home/vagrant/kobman_install.sh
+    - name: Installing KOBman
+      # command: source "{{ clone_path }}"
+      shell: "{{ clone_path }}"
+      # ansible.builtin.script: "{{ clone_path }}"
+      args:
+        executable: /bin/bash
 
-- name: Installing KOBman
-  # command: ./kobman_install.sh
-  shell: ./home/vagrant/kobman_install.sh
-       #- rm -rf kobman_install.sh
+    - name: Updating permission 
+      shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
+
+    - name: Setting KOBman under .bashrc
+      become: yes 
+      shell: . ~/.bashrc  #&& /home/vagrant/.kobman/bin/kobman-init.sh
+    #   shell: "{{ path_to_home }}/.bashrc"  
+
+    - name: Sourcing init file for KOBman
+      shell: "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
+      args:
+        executable: /bin/bash
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# - debug:
+#     msg: "oah-install of oah.kobman"
+
+# # - name: debug specified user's home dir through ansible.env
+# #   debug: var=ansible_env.HOME
+# #   become: true
+# #   become_user: "{{ user }}"
+
+# - name: debug specified user's home dir through lookup on env
+#   debug: var=lookup('env','HOME')
+#   # become: true
+#   # become_user: "{{ user }}"
+
+# - name: Fetching io file for KOBman
+#   become: yes
+#   vars:
+#     path_to_home: lookup('env','HOME')
+#     clone_path: "{{ path_to_home }}"/kobman_install.sh
+#   get_url:
+#     url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
+#     dest: "{{ clone_path }}"
+
+# - name: Setting up permission
+#   become: yes
+#   vars:
+#     path_to_home: lookup('env','HOME')
+#     clone_path: "{{ path_to_home }}"/kobman_install.sh
+#   command: "{{ item }}"
+#   with_items:
+#        - chmod 775 "{{ clone_path }}"
 
 # - name: Installing KOBman
-#   ansible.builtin.shell: source /home/vagrant/kobman_install.sh
-#   args:
-#     executable: /bin/bash
+#   # command: ./kobman_install.sh
+#   shell: ./home/vagrant/kobman_install.sh
+#        #- rm -rf kobman_install.sh
+
+# # - name: Installing KOBman
+# #   ansible.builtin.shell: source /home/vagrant/kobman_install.sh
+# #   args:
+# #     executable: /bin/bash
 
 
-- name: Updating permission 
-  shell: chmod 755 /home/vagrant/.kobman/bin/kobman-init.sh
+# - name: Updating permission 
+#   shell: chmod 755 /home/vagrant/.kobman/bin/kobman-init.sh
 
-- name: Source KOBman environment 
-  become: no 
-  shell: . ~/.bashrc  && /home/vagrant/.kobman/bin/kobman-init.sh
+# - name: Source KOBman environment 
+#   become: no 
+#   shell: . ~/.bashrc  && /home/vagrant/.kobman/bin/kobman-init.sh
