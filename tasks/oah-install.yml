@@ -31,10 +31,12 @@
 
 - name: Installing KOBman
   # command: source "{{ clone_path }}"
-  shell: "{{ clone_path }}" && ls -l
+  shell: "{{ clone_path }}"
   # ansible.builtin.script: "{{ clone_path }}"
   args:
     executable: /bin/bash
+- name : listing
+  shell: ls -l
 
 - name: Updating permission 
   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
