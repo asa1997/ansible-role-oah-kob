@@ -2,9 +2,9 @@
 - debug:
     msg: "OAH install of KOBman role"
   
-  vars:
-    - path_to_home: "{{ lookup('env','HOME') }}"
-    - clone_path: "{{ path_to_home }}/kobman_install.sh" 
+  # vars:
+  #   - path_to_home: "{{ lookup('env','HOME') }}"
+  #   - clone_path: "{{ path_to_home }}/kobman_install.sh" 
   
   tasks:
     - name: Fetching io file for KOBman
