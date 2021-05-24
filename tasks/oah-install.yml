@@ -3,10 +3,10 @@
     msg: "OAH install of KOBman role"
   
 - name: Setting up variables
-  vars:
-    # - path_to_home: "{{ ansible_env.HOME }}"
-    - path_to_home: "{{ HOME }}"
-    - clone_path: "{{ path_to_home }}/kobman_install.sh" 
+  # vars:
+  #   # - path_to_home: "{{ ansible_env.HOME }}"
+  #   - path_to_home: "{{ ansible_env.HOME }}"
+  #   - clone_path: "{{ path_to_home }}/kobman_install.sh" 
   debug:
     msg: "Value of path to home: {{ path_to_home }}; Value of clone path: {{ clone_path }}"
   
