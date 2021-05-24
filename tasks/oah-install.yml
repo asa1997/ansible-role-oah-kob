@@ -16,6 +16,8 @@
       - figlet
       - zip
       - unzip
+    state: latest
+    update_cache: true
   
 - name: Fetching io file for KOBman
   get_url:
