@@ -17,7 +17,7 @@
       - zip
       - unzip
     state: latest
-    update_cache: true
+    update_cache: false
   
 - name: Fetching io file for KOBman
   get_url:
@@ -35,6 +35,7 @@
   # ansible.builtin.script: "{{ clone_path }}"
   args:
     executable: /bin/bash
+
 - name : listing
   shell: ls -l
 
