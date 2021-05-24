@@ -2,11 +2,12 @@
 - debug:
     msg: "OAH install of KOBman role"
   
-- vars:
+- name: Setting up variables
+  vars:
     - path_to_home: "{{ lookup('env','HOME') }}"
     - clone_path: "{{ path_to_home }}/kobman_install.sh" 
   
-- tasks:
+  tasks:
     - name: Fetching io file for KOBman
       get_url:
         url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
