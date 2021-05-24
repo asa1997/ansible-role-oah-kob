@@ -9,6 +9,13 @@
   #   - clone_path: "{{ path_to_home }}/kobman_install.sh" 
   debug:
     msg: "Value of path to home: {{ path_to_home }}; Value of clone path: {{ clone_path }}"
+
+- name: Installing required apt packages
+  apt:
+    pkg: 
+      - figlet
+      - zip
+      - unzip
   
 - name: Fetching io file for KOBman
   get_url:
