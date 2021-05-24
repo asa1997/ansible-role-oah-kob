@@ -30,11 +30,11 @@
       - chmod 775 "{{ clone_path }}"
 
 - name: Installing KOBman
-  # command: source "{{ clone_path }}"
-  shell: "{{ clone_path }}"
+  command: source "{{ clone_path }}"
+  # shell: "{{ clone_path }}"
   # ansible.builtin.script: "{{ clone_path }}"
-  args:
-    executable: /bin/bash
+  # args:
+  #   executable: /bin/bash
 
 - name : listing
   shell: ls -l
