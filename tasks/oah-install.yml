@@ -7,36 +7,35 @@
     - path_to_home: "{{ lookup('env','HOME') }}"
     - clone_path: "{{ path_to_home }}/kobman_install.sh" 
   
-  tasks:
-    - name: Fetching io file for KOBman
-      get_url:
-        url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
-        dest: "{{ clone_path }}"
-      
-    - name: Setting up permission
-      command: "{{ item }}"
-      with_items:
-          - chmod 775 "{{ clone_path }}"
+- name: Fetching io file for KOBman
+  get_url:
+    url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
+    dest: "{{ clone_path }}"
+  
+- name: Setting up permission
+  command: "{{ item }}"
+  with_items:
+      - chmod 775 "{{ clone_path }}"
 
-    - name: Installing KOBman
-      # command: source "{{ clone_path }}"
-      shell: "{{ clone_path }}"
-      # ansible.builtin.script: "{{ clone_path }}"
-      args:
-        executable: /bin/bash
+- name: Installing KOBman
+  # command: source "{{ clone_path }}"
+  shell: "{{ clone_path }}"
+  # ansible.builtin.script: "{{ clone_path }}"
+  args:
+    executable: /bin/bash
 
-    - name: Updating permission 
-      shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
+- name: Updating permission 
+  shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
 
-    - name: Setting KOBman under .bashrc
-      become: yes 
-      shell: . ~/.bashrc  #&& /home/vagrant/.kobman/bin/kobman-init.sh
-    #   shell: "{{ path_to_home }}/.bashrc"  
+- name: Setting KOBman under .bashrc
+  become: yes 
+  shell: . ~/.bashrc  #&& /home/vagrant/.kobman/bin/kobman-init.sh
+#   shell: "{{ path_to_home }}/.bashrc"  
 
-    - name: Sourcing init file for KOBman
-      shell: "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
-      args:
-        executable: /bin/bash
+- name: Sourcing init file for KOBman
+  shell: "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
+  args:
+    executable: /bin/bash
     
 
 
