@@ -33,8 +33,8 @@
   # command: source "{{ clone_path }}"
   shell: "{{ clone_path }}"
   # ansible.builtin.script: "{{ clone_path }}"
-  # args:
-  #   executable: /bin/bash
+  args:
+    executable: /bin/bash
 
 - name: Updating permission 
   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
