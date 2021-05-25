@@ -41,7 +41,7 @@
 
 - name: Setting KOBman under .bashrc
   become: yes 
-  shell: ."{{ path_to_home }}/.bashrc"  #&& /home/vagrant/.kobman/bin/kobman-init.sh
+  shell: "{{ path_to_home }}/.bashrc"  #&& /home/vagrant/.kobman/bin/kobman-init.sh
 #   shell: "{{ path_to_home }}/.bashrc"  
 
 - name: Sourcing init file for KOBman
