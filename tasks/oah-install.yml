@@ -20,6 +20,11 @@
     state: latest
     update_cache: false
   
+- name: Setting up value of $HOME
+  shell: export HOME="{{ path_to_home }}"
+
+- debug: msg: "value of $HOME: {{ HOME }}"
+  
 - name: Fetching io file for KOBman
   get_url:
     url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
