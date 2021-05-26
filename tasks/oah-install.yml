@@ -32,7 +32,18 @@
 
 - name: Installing KOBman
   # command: source "{{ clone_path }}"
-  shell: "{{ clone_path }}"
+  shell: |
+    echo "Creating directory" >> $HOME/logs.out
+    mkdir $HOME/tmp >> $HOME/logs.out
+    echo "moving clone path" >> $HOME/logs.out
+    mv "{{ clone_path }}" > $HOME/tmp >> $HOME/logs.out
+    echo "moving into tmp" >> $HOME/logs.out
+    cd $HOME/tmp >> $HOME/logs.out
+    echo "----------Installing KOBman-----------" >> $HOME/logs.out
+    ./kobman_install.sh >> $HOME/logs.out
+    echo "Sourcing" >> $HOME/logs.out
+    source $HOME/.kobman/bin/kobman-init.sh >> $HOME/logs.out
+
   # script: source "{{ clone_path }}"
   # ansible.builtin.script: "{{ clone_path }}"
   args:
