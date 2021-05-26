@@ -40,6 +40,8 @@
   # command: source "{{ clone_path }}"
   shell: "{{ clone_path }}" 
   # script: "{{ clone_path }}"
+  become: yes
+  become_user: vagrant
   register: out
   # ansible.builtin.script: "{{ clone_path }}"
   args:
