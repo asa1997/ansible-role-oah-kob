@@ -23,7 +23,7 @@
 - name: Setting up value of $HOME
   shell: export HOME="{{ path_to_home }}"
 
-- debug: msg: "value of $HOME: {{ HOME }}"
+# - debug: msg: "value of $HOME: {{ HOME }}"
   
 - name: Fetching io file for KOBman
   get_url:
