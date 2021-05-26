@@ -32,12 +32,12 @@
 
 - name: Installing KOBman
   # command: source "{{ clone_path }}"
-  # shell: 
-  script: "{{ clone_path }}"
+  shell: "{{ clone_path }}" 
+  # script: "{{ clone_path }}"
   register: out
   # ansible.builtin.script: "{{ clone_path }}"
   args:
-    # executable: /bin/bash
+    executable: /bin/bash
     creates: "test.txt"
 
 - debug: var=out.stdout_lines
