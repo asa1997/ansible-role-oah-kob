@@ -32,24 +32,15 @@
 
 - name: Installing KOBman
   # command: source "{{ clone_path }}"
-  shell: |
-    echo "Creating directory" >> {{ path_to_home }}/logs.out
-    mkdir {{ path_to_home }}/tmp >> {{ path_to_home }}/logs.out
-    echo "moving clone path" >> {{ path_to_home }}/logs.out
-    mv "{{ clone_path }}" > {{ path_to_home }}/tmp >> {{ path_to_home }}/logs.out
-    echo "moving into tmp" >> {{ path_to_home }}/logs.out
-    cd {{ path_to_home }}/tmp >> {{ path_to_home }}/logs.out
-    echo "----------Installing KOBman-----------" >> {{ path_to_home }}/logs.out
-    ./kobman_install.sh >> {{ path_to_home }}/logs.out
-    echo "Sourcing" >> {{ path_to_home }}/logs.out
-    source {{ path_to_home }}/.kobman/bin/kobman-init.sh >> {{ path_to_home }}/logs.out
-
-  # script: source "{{ clone_path }}"
+  # shell: 
+  script: "{{ clone_path }}"
+  register: out
   # ansible.builtin.script: "{{ clone_path }}"
   args:
     # executable: /bin/bash
     creates: "test.txt"
 
+- debug: var=out.stdout_lines
 # - name: Updating permission 
 #   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
 
