@@ -41,7 +41,7 @@
   shell: "{{ clone_path }}" 
   # script: "{{ clone_path }}"
   become: yes
-  become_user: vagrant
+  become_user: "{{ vagrant_user }}"
   register: out
   # ansible.builtin.script: "{{ clone_path }}"
   args:
