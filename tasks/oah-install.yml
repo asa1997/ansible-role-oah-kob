@@ -16,6 +16,7 @@
       - figlet
       - zip
       - unzip
+      - curl
     state: latest
     update_cache: false
   
