@@ -49,8 +49,9 @@
     creates: "test.txt"
 
 - debug: var=out.stdout_lines
-# - name: Updating permission 
-#   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
+
+- name: Updating permission 
+  shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
 
 # - name: Setting KOBman under .bashrc
 #   become: yes 
