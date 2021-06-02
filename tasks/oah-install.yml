@@ -11,16 +11,10 @@
       - curl
     state: latest
     update_cache: false
-  
-# - name: Setting up value of $HOME
-#   shell: export HOME="{{ path_to_home }}"
 
-# - debug: 
-#     msg: "value of $HOME: {{ HOME }}"
-  
 - name: Fetching io file for KOBman
   get_url:
-    url: https://raw.githubusercontent.com/asa1997/KOBman/dist/dist/get.kobman.io
+    url: https://raw.githubusercontent.com/hyperledgerkochi/KOBman/dist/dist/get.kobman.io
     dest: "{{ clone_path }}"
   
 - name: Setting up permission
@@ -34,21 +28,13 @@
   # script: "{{ clone_path }}"
   become: yes
   become_user: "{{ vagrant_user }}"
-  register: out
-  # ansible.builtin.script: "{{ clone_path }}"
   args:
     executable: /bin/bash
-    creates: "test.txt"
 
 - debug: var=out.stdout_lines
 
 - name: Updating permission 
   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
-
-# - name: Setting KOBman under .bashrc
-#   become: yes 
-#   shell: "{{ path_to_home }}/.bashrc"  #&& /home/vagrant/.kobman/bin/kobman-init.sh
-#   shell: "{{ path_to_home }}/.bashrc"  
 
 - name: Sourcing init file for KOBman
   shell: "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
