@@ -11,7 +11,7 @@
       - curl
     state: latest
     update_cache: false
-
+  
 - name: Fetching io file for KOBman
   get_url:
     url: https://raw.githubusercontent.com/hyperledgerkochi/KOBman/dist/dist/get.kobman.io
@@ -28,10 +28,13 @@
   # script: "{{ clone_path }}"
   become: yes
   become_user: "{{ vagrant_user }}"
+  # register: out
+  # ansible.builtin.script: "{{ clone_path }}"
   args:
     executable: /bin/bash
 
-- debug: var=out.stdout_lines
+
+# - debug: var=out.stdout_lines
 
 - name: Updating permission 
   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
