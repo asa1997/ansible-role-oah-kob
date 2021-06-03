@@ -28,13 +28,13 @@
   # script: "{{ clone_path }}"
   become: yes
   become_user: "{{ vagrant_user }}"
-  # register: out
+  register: out
   # ansible.builtin.script: "{{ clone_path }}"
   args:
     executable: /bin/bash
 
 
-# - debug: var=out.stdout_lines
+- debug: var=out.stdout_lines
 
 - name: Updating permission 
   shell: chmod 755 "{{ path_to_home }}/.kobman/bin/kobman-init.sh"
